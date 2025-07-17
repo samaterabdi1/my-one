@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>I Love You, My Queen 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to top right, #ff9a9e, #fad0c4, #fbc2eb);
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 60px;
+    }
+
+    .moving-name {
+      font-size: 2rem;
+      font-weight: bold;
+      position: fixed;
+      top: 20px;
+      left: -100%;
+      white-space: nowrap;
+      animation: moveName 10s linear infinite;
+      text-shadow: 2px 2px 8px #ff69b4;
+      z-index: 10;
+      width: 100vw;
+      pointer-events: none;
+    }
+
+    @keyframes moveName {
+      0% { left: -100%; }
+      50% { left: 50%; transform: translateX(-50%) scale(1.1); }
+      100% { left: 120%; }
+    }
+
+    .emoji-heart {
+      font-size: 6rem;
+      animation: beat 1s infinite;
+      margin-bottom: 10px;
+      user-select: none;
+      text-shadow: 0 0 20px #ff3366;
+      z-index: 2;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    .love-text {
+      font-size: 3rem;
+      font-weight: bold;
+      animation: glow 2s ease-in-out infinite;
+      margin-bottom: 20px;
+      user-select: none;
+      z-index: 2;
+      text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366;
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366;
+      }
+      50% {
+        text-shadow: 0 0 30px #fff, 0 0 50px #ff6699;
+      }
+    }
+
+    .typed {
+      max-width: 90%;
+      font-size: 1.3rem;
+      white-space: pre-wrap;
+      min-height: 80px;
+      margin-bottom: 30px;
+      user-select: none;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      background: white;
+      color: crimson;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      margin-bottom: 40px;
+      user-select: none;
+    }
+
+    .btn:hover {
+      background: crimson;
+      color: white;
+    }
+
+    .floating-heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatHeart 6s linear infinite;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .floating-heart::before,
+    .floating-heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .floating-heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .floating-heart::after {
+      top: 0;
+      left: -10px;
+    }
+
+    @keyframes floatHeart {
+      0% { bottom: 0; opacity: 1; }
+      100% { bottom: 100%; transform: translateX(-50px) rotate(360deg); opacity: 0; }
+    }
+
+    .floating-name {
+      position: absolute;
+      color: pink;
+      font-size: 1.2rem;
+      animation: floatName 5s linear infinite;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    @keyframes floatName {
+      0% { bottom: 0; opacity: 1; }
+      100% { bottom: 100%; transform: translateY(-50px); opacity: 0; }
+    }
+
+    @media (max-width: 600px) {
+      .emoji-heart {
+        font-size: 4rem;
+      }
+
+      .love-text {
+        font-size: 2rem;
+      }
+
+      .typed {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="moving-name">💖 Hoodo, You Are My World 💖</div>
+
+  <div class="emoji-heart">💖</div>
+
+  <div class="love-text">I Love You bubu</div>
+
+  <div class="typed" id="typedMsg"></div>
+
+  <button class="btn" onclick="showSurprise()">💝 Taabo Noloshaydi 💝</button>
+
+  <script>
+    // Typing effect
+    const message = "From the moment I met you,\nmy heart found its rhythm.\nYou are my sunshine, my moonlight,\nmy forever love. 💖";
+    const typed = document.getElementById("typedMsg");
+    let i = 0;
+    function typeText() {
+      if (i < message.length) {
+        typed.innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeText, 50);
+      }
+    }
+    setTimeout(typeText, 1000);
+
+    // Surprise animation
+    function showSurprise() {
+      for (let i = 0; i < 40; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('floating-heart');
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.bottom = '-30px';
+        heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 7000);
+      }
+
+      for (let i = 0; i < 10; i++) {
+        const name = document.createElement('div');
+        name.className = 'floating-name';
+        name.innerText = 'HOODO 💖';
+        name.style.left = Math.random() * 100 + 'vw';
+        name.style.bottom = '0';
+        name.style.animationDuration = (3 + Math.random() * 3) + 's';
+        document.body.appendChild(name);
+        setTimeout(() => name.remove(), 7000);
+      }
+    }
+  </script>
+  
+</body>
+</html>
